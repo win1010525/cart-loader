@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "cartloader",
+  "version": "${version}",
+  "name": "CartLoader",
+  "description": "Mod for minecarts to load chunks",
+  "authors": ["guicale"],
+  "contact": {
+    "email": "guicale@posteo.net"
+  },
+  "license": "GPL-3.0-or-later",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+    ]
+  },
+  "mixins": [
+    "cartload.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  }
+}
