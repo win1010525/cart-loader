@@ -30,7 +30,7 @@ public abstract class CartLoaderMixin {
     final ChunkTicketType<Integer> minecartChunkTicketType = ChunkTicketType.create("minecart", Integer::compareTo, 1200);
     public ChunkPos chunkPos, oldChunkPos;
     public int minecartId;
-    @Inject(at = @At("RETURN"), method = "moveOnRail(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;)V")
+    @Inject(at = @At("RETURN"), method = "Lnet/minecraft/entity/vehicle/AbstractMinecartEntity;moveOnRail(Lnet/minecraft/server/world/ServerWorld;)V")
     private void loadChunks(BlockPos pos, BlockState state, CallbackInfo info) {
         minecartId = ((AbstractMinecartEntity) (Object) this).getId();
         oldChunkPos = chunkPos;
