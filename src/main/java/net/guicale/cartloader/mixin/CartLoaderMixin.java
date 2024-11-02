@@ -12,12 +12,10 @@
 
 package net.guicale.cartloader.mixin;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.vehicle.AbstractMinecartEntity;
 import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerChunkManager;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,7 +29,8 @@ public abstract class CartLoaderMixin {
     public ChunkPos chunkPos, oldChunkPos;
     public int minecartId;
     @Inject(at = @At("RETURN"), method = "moveOnRail")
-    private void loadChunks(ServerWorld world, CallbackInfo ci) {
+
+    public void loadChunks(CallbackInfo ci) {
         minecartId = ((AbstractMinecartEntity) (Object) this).getId();
         oldChunkPos = chunkPos;
         chunkPos = ((AbstractMinecartEntity) (Object) this).getChunkPos();
@@ -42,7 +41,7 @@ public abstract class CartLoaderMixin {
         if (world.isClient) {
             return;
         }
-        if (world.getPlayers().size() == 0) {
+        if (world.getPlayers().isEmpty()) {
             world.resetIdleTimeout();
         }
         ServerChunkManager chunkManager = world.getChunkManager();
