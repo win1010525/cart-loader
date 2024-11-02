@@ -48,7 +48,7 @@ public abstract class CartLoaderMixin {
         if (!((AbstractMinecartEntity)(Object)this).hasPlayerRider() & !oldChunkPos.equals(chunkPos)) {
             chunkManager.addTicket(minecartChunkTicketType,
                     chunkPos,
-                    2,
+                    4,
                     minecartId
             );
         }
