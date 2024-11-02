@@ -31,7 +31,7 @@ public abstract class CartLoaderMixin {
     public ChunkPos chunkPos, oldChunkPos;
     public int minecartId;
     @Inject(at = @At("RETURN"), method = "moveOnRail")
-    private void loadChunks(BlockPos pos, BlockState state, CallbackInfo info) {
+    private void loadChunks(ServerWorld world, CallbackInfo ci) {
         minecartId = ((AbstractMinecartEntity) (Object) this).getId();
         oldChunkPos = chunkPos;
         chunkPos = ((AbstractMinecartEntity) (Object) this).getChunkPos();
