@@ -22,6 +22,7 @@ import net.minecraft.util.math.ChunkPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractMinecartEntity.class)
 public abstract class CartLoaderMixin {
@@ -30,7 +31,7 @@ public abstract class CartLoaderMixin {
     public ChunkPos chunkPos, oldChunkPos;
     public int minecartId;
     @Inject(at = @At("RETURN"), method = "Lnet/minecraft/entity/vehicle/AbstractMinecartEntity;moveOnRail(Lnet/minecraft/server/world/ServerWorld;)V")
-    private void loadChunks(BlockPos pos, BlockState state,) {
+    private void loadChunks(BlockPos pos, BlockState state, CallbackInfo info) {
         minecartId = ((AbstractMinecartEntity) (Object) this).getId();
         oldChunkPos = chunkPos;
         chunkPos = ((AbstractMinecartEntity) (Object) this).getChunkPos();
